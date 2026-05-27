@@ -1,0 +1,331 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030712;
+  --foreground: #e2e8f0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@utility font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Staff [GM] badge — brillo dorado (independiente del nivel). */
+@keyframes nickname-gm-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.nickname-fx-gm {
+  display: inline-block;
+  background: linear-gradient(
+    105deg,
+    #b45309 0%,
+    #fde68a 22%,
+    #fffbeb 45%,
+    #fbbf24 68%,
+    #fde68a 88%,
+    #b45309 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: nickname-gm-shine 2.8s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.65));
+}
+
+/* Nivel ≥ 500 — gradiente de élite (solo en texto, no en [GM]). */
+.nickname-fx-elite {
+  display: inline;
+  background: linear-gradient(90deg, #c4b5fd, #e879f9, #67e8f9, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.35));
+}
+
+/* Nivel 1000 — neón animado infinito (solo en texto, no en [GM]). */
+@keyframes nickname-neon-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+.nickname-fx-max {
+  display: inline;
+  background: linear-gradient(
+    90deg,
+    #22d3ee,
+    #a78bfa,
+    #f472b6,
+    #34d399,
+    #22d3ee,
+    #a78bfa
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: nickname-neon-flow 3.5s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.55));
+}
+
+/* ── Challenge arena arcade effects ── */
+
+@keyframes arcade-grid-scroll {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 48px, 48px 0;
+  }
+}
+
+.arcade-grid {
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: arcade-grid-scroll 20s linear infinite;
+  mask-image: radial-gradient(ellipse at 50% 40%, black 15%, transparent 72%);
+}
+
+@keyframes arcade-shine-sweep {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateX(220%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+.arcade-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.12) 48%,
+    rgba(165, 243, 252, 0.25) 50%,
+    rgba(255, 255, 255, 0.12) 52%,
+    transparent 65%
+  );
+  animation: arcade-shine-sweep 4.5s ease-in-out infinite;
+}
+
+@keyframes arcade-scan {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.arcade-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(34, 211, 238, 0.04) 2px,
+    rgba(34, 211, 238, 0.04) 4px
+  );
+  animation: arcade-scan 8s linear infinite;
+}
+
+@keyframes arcade-holo-border {
+  0%,
+  100% {
+    opacity: 0.55;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    filter: hue-rotate(25deg);
+  }
+}
+
+.arcade-holo-border {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 211, 238, 0.7),
+    rgba(139, 92, 246, 0.5),
+    rgba(34, 211, 238, 0.7)
+  );
+  background-size: 200% 200%;
+  animation: arcade-holo-border 3s ease-in-out infinite;
+  border-radius: 1.75rem;
+  z-index: 0;
+}
+
+.arcade-hero-card {
+  transform-style: preserve-3d;
+}
+
+@keyframes arcade-btn-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+.arcade-btn-charge {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.35), transparent 65%);
+  animation: arcade-btn-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes arcade-ripple-expand {
+  0% {
+    transform: scale(0);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(28);
+    opacity: 0;
+  }
+}
+
+.arcade-ripple {
+  animation: arcade-ripple-expand 0.65s ease-out forwards;
+}
+
+@keyframes arcade-golden-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 8px rgba(251, 191, 36, 0.5),
+      0 0 20px rgba(251, 191, 36, 0.35),
+      0 0 40px rgba(245, 158, 11, 0.2);
+    opacity: 0.85;
+  }
+  50% {
+    text-shadow:
+      0 0 12px rgba(253, 224, 71, 0.95),
+      0 0 28px rgba(251, 191, 36, 0.75),
+      0 0 56px rgba(245, 158, 11, 0.45);
+    opacity: 1;
+  }
+}
+
+.arcade-golden-title {
+  color: #fde68a;
+  animation: arcade-golden-pulse 2.8s ease-in-out infinite;
+}
+
+.arcade-golden-hint {
+  color: #fcd34d;
+  text-shadow:
+    0 0 10px rgba(251, 191, 36, 0.9),
+    0 0 24px rgba(245, 158, 11, 0.65),
+    0 0 40px rgba(234, 179, 8, 0.35);
+  animation: arcade-golden-pulse 2s ease-in-out infinite;
+}
+
+/* Lobby intro line — bright, on top; CSS text-shadow only (no filter) */
+.arcade-golden-intro {
+  color: #fef3c7;
+  opacity: 1;
+  text-shadow:
+    0 0 6px rgba(254, 243, 199, 0.75),
+    0 0 14px rgba(253, 224, 71, 0.55),
+    0 0 26px rgba(251, 191, 36, 0.35);
+  animation: arcade-golden-intro-in 0.7s ease-out forwards, arcade-golden-intro-pulse 6s ease-in-out 0.7s infinite;
+}
+
+@keyframes arcade-golden-intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes arcade-golden-intro-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 6px rgba(254, 243, 199, 0.75),
+      0 0 14px rgba(253, 224, 71, 0.55),
+      0 0 26px rgba(251, 191, 36, 0.35);
+  }
+  50% {
+    text-shadow:
+      0 0 8px rgba(254, 243, 199, 0.9),
+      0 0 18px rgba(253, 224, 71, 0.65),
+      0 0 32px rgba(251, 191, 36, 0.45);
+  }
+}
+
+.arcade-audio-toggle:not(:disabled) {
+  animation: arcade-golden-pulse 3.2s ease-in-out infinite;
+}
+
+/* Difficulty roulette — gear ring + hex hub */
+.arcade-gear-teeth {
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(15, 23, 42, 0.98) 0deg 11deg,
+    rgba(34, 211, 238, 0.42) 11deg 18deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 58%, #000 59%, #000 90%, transparent 91%);
+  mask: radial-gradient(circle, transparent 58%, #000 59%, #000 90%, transparent 91%);
+}
+
+.arcade-gear-hub {
+  background: linear-gradient(145deg, #334155, #0f172a);
+  clip-path: polygon(50% 0%, 92% 25%, 92% 75%, 50% 100%, 8% 75%, 8% 25%);
+  box-shadow:
+    inset 0 0 12px rgba(34, 211, 238, 0.2),
+    0 0 16px rgba(34, 211, 238, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcade-golden-title,
+  .arcade-golden-hint,
+  .arcade-golden-intro,
+  .arcade-audio-toggle,
+  .arcade-gear-teeth {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcade-grid,
+  .arcade-shine::after,
+  .arcade-scanlines,
+  .arcade-holo-border,
+  .arcade-btn-charge,
+  .arcade-ripple {
+    animation: none !important;
+  }
+}

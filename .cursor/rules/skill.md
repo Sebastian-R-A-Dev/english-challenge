@@ -30,7 +30,7 @@ Durante la configuración debes seleccionar:
 TypeScript → YES
 ESLint → YES
 Tailwind CSS → YES
-Use src directory → YES
+Use src directory → NO (código en la raíz del proyecto: `app/`, `components/`, etc.)
 App Router → YES
 Import Alias → YES (@/*)
 Stack Tecnológico
@@ -255,36 +255,35 @@ english-challenge/
 │
 ├── public/
 │
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx
-│   │   ├── page.tsx
-│   │   ├── globals.css
-│   │   └── favicon.ico
-│   │
-│   ├── components/
-│   │   ├── ui/
-│   │   ├── layout/
-│   │   ├── hero/
-│   │   ├── challenge/
-│   │   ├── ranking/
-│   │   ├── player/
-│   │   └── footer/
-│   │
-│   ├── data/
-│   │   └── mock-ranking.ts
-│   │
-│   ├── hooks/
-│   │
-│   ├── services/
-│   │
-│   ├── lib/
-│   │
-│   ├── utils/
-│   │
-│   ├── types/
-│   │
-│   └── styles/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── globals.css
+│   └── favicon.ico
+│
+├── components/
+│   ├── ui/
+│   ├── layout/
+│   ├── hero/
+│   ├── challenge/
+│   ├── ranking/
+│   ├── player/
+│   └── footer/
+│
+├── data/
+│   └── mock-ranking.ts
+│
+├── hooks/
+│
+├── services/
+│
+├── lib/
+│
+├── utils/
+│
+├── types/
+│
+├── styles/
 │
 ├── package.json
 ├── tailwind.config.ts
