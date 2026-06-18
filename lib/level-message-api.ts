@@ -1,4 +1,4 @@
-import { apiBase } from "@/lib/auth-config";
+import { apiBase, appName } from "@/lib/auth-config";
 
 const FALLBACK_LEVEL_0 =
   "Rookie pilot — welcome to the English Challenge.";
@@ -6,7 +6,7 @@ const FALLBACK_LEVEL_0 =
 /** Public milestone copy for a player level (GET /level-messages/resolve). */
 export async function fetchLevelMessage(level: number): Promise<string> {
   try {
-    const qs = new URLSearchParams({ level: String(level) });
+    const qs = new URLSearchParams({ level: String(level), app_name: appName() });
     const res = await fetch(`${apiBase()}/api/v1/level-messages/resolve?${qs}`);
     if (!res.ok) return level === 0 ? FALLBACK_LEVEL_0 : "Keep playing to level up.";
     const json: unknown = await res.json();
